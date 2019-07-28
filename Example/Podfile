@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RxSocketIO_Example' do
+  pod 'RxSocketIO', :path => '../'
+
+  target 'RxSocketIO_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
