@@ -2,10 +2,8 @@ use_frameworks!
 
 target 'RxSocketIO_Example' do
   pod 'RxSocketIO', :path => '../'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'Socket.IO-Client-Swift', '~> 15.1.0'
 
-  target 'RxSocketIO_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

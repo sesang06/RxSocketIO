@@ -1,0 +1,44 @@
+PODS:
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSocketIO (0.1.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+    - Socket.IO-Client-Swift (~> 15.1.0)
+  - RxSwift (5.0.0)
+  - Socket.IO-Client-Swift (15.1.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.0)
+
+DEPENDENCIES:
+  - RxCocoa (~> 5)
+  - RxSocketIO (from `../`)
+  - RxSwift (~> 5)
+  - Socket.IO-Client-Swift (~> 15.1.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - Socket.IO-Client-Swift
+    - Starscream
+
+EXTERNAL SOURCES:
+  RxSocketIO:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSocketIO: a0419fd8e845aeab89547603897216a6ad2732f2
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  Socket.IO-Client-Swift: 7cb44c0ffb86e158cee32d0642d30ec5fdcf8f61
+  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
+
+PODFILE CHECKSUM: d6887c839f5db3f3c11c8f0d4a097602c8112cbc
+
+COCOAPODS: 1.5.3
