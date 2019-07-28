@@ -12,13 +12,13 @@ import SocketIO
 
 public extension Reactive where Base: SocketIOClient {
 
-  public var connect: Binder<Void> {
+  var connect: Binder<Void> {
     return Binder(self.base) { client, _  in
       client.connect()
     }
   }
 
-  public func connect(timeoutAfter: Double) -> Observable<Void> {
+  func connect(timeoutAfter: Double) -> Observable<Void> {
     return Observable<Void>.create { observer -> Disposable in
       self.base.connect(timeoutAfter: timeoutAfter, withHandler: {
         observer.onNext(())
@@ -27,27 +27,27 @@ public extension Reactive where Base: SocketIOClient {
     }
   }
 
-  public var didConnect: Binder<String> {
+  var didConnect: Binder<String> {
     return Binder(self.base) { client, namespace in
 
       client.didConnect(toNamespace: namespace)
     }
   }
 
-  public var didDisconnect: Binder<String> {
+  var didDisconnect: Binder<String> {
     return Binder(self.base) { client, reason in
       client.didDisconnect(reason: reason)
     }
   }
 
-  public var disconnect: Binder<Void> {
+   var disconnect: Binder<Void> {
     return Binder(self.base) { client, _ in
       client.disconnect()
     }
   }
 
   @discardableResult
-  public func emit(_ event: String, _ items: SocketData...) -> Observable<Void> {
+   func emit(_ event: String, _ items: SocketData...) -> Observable<Void> {
     return Observable<Void>.create { observer -> Disposable in
       self.base.emit(event, items) {
         observer.onNext(())
@@ -57,7 +57,7 @@ public extension Reactive where Base: SocketIOClient {
   }
 
   @discardableResult
-  public func emit(_ event: String, _ items: [Any]) -> Observable<Void> {
+   func emit(_ event: String, _ items: [Any]) -> Observable<Void> {
     return Observable<Void>.create { observer -> Disposable in
       self.base.emit(event, items) {
         observer.onNext(())
@@ -66,21 +66,21 @@ public extension Reactive where Base: SocketIOClient {
     }
   }
 
-  public func emitWithAck(_ event: String, with items: [Any]) -> Observable<OnAckCallback> {
+   func emitWithAck(_ event: String, with items: [Any]) -> Observable<OnAckCallback> {
     return Observable<OnAckCallback>.create { observer -> Disposable in
       observer.onNext(self.base.emitWithAck(event, with: items))
       return Disposables.create()
     }
   }
 
-  public func emitWithAck(_ event: String, _ items: SocketData...) ->  Observable<OnAckCallback> {
+   func emitWithAck(_ event: String, _ items: SocketData...) ->  Observable<OnAckCallback> {
     return Observable<OnAckCallback>.create { observer -> Disposable in
       observer.onNext(self.base.emitWithAck(event, items))
       return Disposables.create()
     }
   }
 
-  public var emitAck: Binder<(Int, [Any])> {
+   var emitAck: Binder<(Int, [Any])> {
     return Binder(self.base) { client, datas  in
       let (ack, items) = datas
       client.emitAck(ack, with: items)
@@ -88,21 +88,21 @@ public extension Reactive where Base: SocketIOClient {
     }
   }
 
-  public var handleAck: Binder<(Int, [Any])> {
+   var handleAck: Binder<(Int, [Any])> {
     return Binder(self.base) { client, datas  in
       let (ack, data) = datas
       client.handleAck(ack, data: data)
     }
   }
 
-  public var handleClientEvent: Binder<(SocketClientEvent, [Any])> {
+   var handleClientEvent: Binder<(SocketClientEvent, [Any])> {
     return Binder(self.base) { client, datas  in
       let (event, data) = datas
       client.handleClientEvent(event, data: data)
     }
   }
 
-  public var handleEvent: Binder<(String, [Any], Bool, Int)> {
+   var handleEvent: Binder<(String, [Any], Bool, Int)> {
     return Binder(self.base) { client, datas  in
       let (event, data, isInternalMessage, ack) = datas
       client.handleEvent(
@@ -114,44 +114,44 @@ public extension Reactive where Base: SocketIOClient {
     }
   }
 
-  public var handlePacket: Binder<SocketPacket> {
+   var handlePacket: Binder<SocketPacket> {
     return Binder(self.base) { client, packet in
       client.handlePacket(packet)
     }
   }
 
-  public var leaveNameSpace: Binder<Void> {
+   var leaveNameSpace: Binder<Void> {
     return Binder(self.base) { client, _ in
       client.leaveNamespace()
     }
   }
 
 
-  public var joinNamespace: Binder<Void> {
+   var joinNamespace: Binder<Void> {
     return Binder(self.base) { client, _ in
       client.joinNamespace()
     }
   }
 
-  public var offClientEvent: Binder<SocketClientEvent> {
+   var offClientEvent: Binder<SocketClientEvent> {
     return Binder(self.base) { client, event in
       client.off(clientEvent: event)
     }
   }
 
-  public var offEvent: Binder<String> {
+   var offEvent: Binder<String> {
     return Binder(self.base) { client, event in
       client.off(event)
     }
   }
 
-  public var offId: Binder<UUID> {
+   var offId: Binder<UUID> {
     return Binder(self.base) { client, id in
       client.off(id: id)
     }
   }
 
-  public func on(_ event: String) -> Observable<([Any], SocketAckEmitter)> {
+   func on(_ event: String) -> Observable<([Any], SocketAckEmitter)> {
     return Observable<([Any], SocketAckEmitter)>.create { observer -> Disposable in
       let id = self.base.on(event, callback: { data, emitter in
         observer.onNext((data, emitter))
